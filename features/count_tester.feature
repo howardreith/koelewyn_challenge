@@ -1,14 +1,14 @@
 Feature: Count_tester
   I want to know if the count of items is equal to 5.
 
-  Scenario: The count is not equal to 5
+  Scenario Outline: The count is or is not equal to 5
 
-  Given the count is 4
+  Given the count is <count>
   When I ask whether the count is 5
-  Then I should be told "nope"
+  Then I should be told <answer>
 
-  Scenario: The count is equal to 5
-
-  Given the count is 5
-  When I ask whether the count is 5
-  Then I should be told "yup"
+  Examples:
+    | count | answer |
+    | 4 | "nope" |
+    | 5 | "yup" |
+    | 1000 | "nope" |
