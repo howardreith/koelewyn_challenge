@@ -100,7 +100,6 @@ When(/^the span's value is formatted as currency$/) do
   spans[3] = @browser.span id: 'txt_val_5'
   spans[4] = @browser.span id: 'txt_val_6'
   spans[5] = @browser.span id: 'txt_ttl_val'
-  puts spans
 
   texts = []
   texts[0] = spans[0].text
@@ -109,7 +108,6 @@ When(/^the span's value is formatted as currency$/) do
   texts[3] = spans[3].text
   texts[4] = spans[4].text
   texts[5] = spans[5].text
-  puts texts
 
   # Requires a decimal and commas
   currency_format = /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/
@@ -117,10 +115,8 @@ When(/^the span's value is formatted as currency$/) do
   texts.each do |text|
     if text.match currency_format
       @currency_answer = true
-      puts @currency_answer
     else
       @currency_answer = false
-      puts @currency_answer
       break
     end
   end
