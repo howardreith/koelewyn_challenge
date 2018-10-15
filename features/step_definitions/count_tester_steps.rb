@@ -3,11 +3,14 @@ Given(/^I am on the web page$/) do
 end
 
 When(/^txt_val_1 exists$/) do
+  @count = 0
   text1 = @browser.span id: 'txt_val_1'
-  @answer = text1.exists?
-  puts(@answer)
+  if text1.exists?
+    @count = @count + 1
+    puts(@count)
+  end
 end
 
 Then(/^I should find true$/) do
-  expect(@answer).to eq(true)
+  expect(@count).to eq(1)
 end
