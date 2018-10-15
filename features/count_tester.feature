@@ -1,14 +1,8 @@
-Feature: Count_tester
-  I want to know if the count of items is equal to 5.
+Feature: Count Tester
+  I want to know if a certain text field exists
 
-  Scenario Outline: The count is or is not equal to 5
+  Scenario: The field exists
 
-  Given the count is <count>
-  When I ask whether the count is 5
-  Then I should be told <answer>
-
-  Examples:
-    | count | answer |
-    | 4 | "nope" |
-    | 5 | "yup" |
-    | 1000 | "nope" |
+  Given I am on the web page
+  When txt_val_1 exists
+  Then I should find true
