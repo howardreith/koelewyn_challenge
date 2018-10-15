@@ -45,6 +45,7 @@ When(/^the span's value is greater than 0$/) do
       @value_answer = true
     else
       @value_answer = false
+      break
     end
   end
 end
@@ -113,14 +114,16 @@ When(/^the span's value is formatted as currency$/) do
   # Requires a decimal and commas
   currency_format = /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/
 
-  if texts[0].match currency_format
-    @currency_answer = true
-    puts @currency_answer
-  else
-    @currency_answer = false
-    puts @currency_answer
+  texts.each do |text|
+    if text.match currency_format
+      @currency_answer = true
+      puts @currency_answer
+    else
+      @currency_answer = false
+      puts @currency_answer
+      break
+    end
   end
-
 end
 
 Then(/^I should get a message of true$/) do
