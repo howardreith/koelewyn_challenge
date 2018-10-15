@@ -1,8 +1,8 @@
 Feature: Count Tester
-  I want to know if a certain text field exists
+  I want to know if the count of spans equals 5
 
-  Scenario: The field exists
+  Scenario: The count of spans equals 5
 
   Given I am on the web page
-  When txt_val_1 exists
+  When all 5 spans exist
   Then I should find true
