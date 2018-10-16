@@ -1,7 +1,9 @@
 # Response to Problem #1
 ### By Howie Reith
 
-The solution in this repository provides 4 tests for Problem #1:
+The solution in this repository provides 4 tests for Problem #1 as presented here:
+
+![alt text](https://raw.githubusercontent.com/howardreith/koelewyn_challenge/master/Jason%20Koelewyn%20Challenge.png)
 
 #### count_tester
 Verifies that there are 5 values on the screen.
