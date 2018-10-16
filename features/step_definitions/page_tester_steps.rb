@@ -33,19 +33,24 @@ Given(/^I have navigated to the web page$/) do
 end
 
 When(/^the span's value is greater than 0$/) do
-  texts = []
-  texts[0] = @browser.span id: 'txt_val_1'
-  texts[1] = @browser.span id: 'txt_val_2'
-  texts[2] = @browser.span id: 'txt_val_4'
-  texts[3] = @browser.span id: 'txt_val_5'
-  texts[4] = @browser.span id: 'txt_val_6'
+  # texts = []
+  # texts[0] = @browser.span id: 'txt_val_1'
+  # texts[1] = @browser.span id: 'txt_val_2'
+  # texts[2] = @browser.span id: 'txt_val_4'
+  # texts[3] = @browser.span id: 'txt_val_5'
+  # texts[4] = @browser.span id: 'txt_val_6'
 
   values = []
-  values[0] = texts[0].text.to_s.tr('$,', '').to_f
-  values[1] = texts[1].text.to_s.tr('$,', '').to_f
-  values[2] = texts[2].text.to_s.tr('$,', '').to_f
-  values[3] = texts[3].text.to_s.tr('$,', '').to_f
-  values[4] = texts[4].text.to_s.tr('$,', '').to_f
+  # values[0] = texts[0].text.to_s.tr('$,', '').to_f
+  # values[1] = texts[1].text.to_s.tr('$,', '').to_f
+  # values[2] = texts[2].text.to_s.tr('$,', '').to_f
+  # values[3] = texts[3].text.to_s.tr('$,', '').to_f
+  # values[4] = texts[4].text.to_s.tr('$,', '').to_f
+  values[0] = @site.value_1.to_s.tr('$,', '').to_f
+  values[1] = @site.value_2.to_s.tr('$,', '').to_f
+  values[2] = @site.value_3.to_s.tr('$,', '').to_f
+  values[3] = @site.value_4.to_s.tr('$,', '').to_f
+  values[4] = @site.value_5.to_s.tr('$,', '').to_f
 
   values.each do |value|
     if value > 0
