@@ -113,21 +113,27 @@ Given(/^The user is viewing the web page$/) do
 end
 
 When(/^the span's value is formatted as currency$/) do
-  spans = []
-  spans[0] = @browser.span id: 'txt_val_1'
-  spans[1] = @browser.span id: 'txt_val_2'
-  spans[2] = @browser.span id: 'txt_val_4'
-  spans[3] = @browser.span id: 'txt_val_5'
-  spans[4] = @browser.span id: 'txt_val_6'
-  spans[5] = @browser.span id: 'txt_ttl_val'
+  # spans = []
+  # spans[0] = @browser.span id: 'txt_val_1'
+  # spans[1] = @browser.span id: 'txt_val_2'
+  # spans[2] = @browser.span id: 'txt_val_4'
+  # spans[3] = @browser.span id: 'txt_val_5'
+  # spans[4] = @browser.span id: 'txt_val_6'
+  # spans[5] = @browser.span id: 'txt_ttl_val'
 
   texts = []
-  texts[0] = spans[0].text
-  texts[1] = spans[1].text
-  texts[2] = spans[2].text
-  texts[3] = spans[3].text
-  texts[4] = spans[4].text
-  texts[5] = spans[5].text
+  # texts[0] = spans[0].text
+  # texts[1] = spans[1].text
+  # texts[2] = spans[2].text
+  # texts[3] = spans[3].text
+  # texts[4] = spans[4].text
+  # texts[5] = spans[5].text
+  texts[0] = @site.value_1
+  texts[1] = @site.value_2
+  texts[2] = @site.value_3
+  texts[3] = @site.value_4
+  texts[4] = @site.value_5
+  texts[5] = @site.total_balance
 
   # Requires a decimal and commas
   currency_format = /^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?\.\d{1,2}$/
