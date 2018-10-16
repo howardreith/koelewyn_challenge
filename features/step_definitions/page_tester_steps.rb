@@ -72,23 +72,29 @@ Given(/^The user has navigated to the web page$/) do
 end
 
 When(/^The total value is equal to the sum of the span values$/) do
-  texts = []
-  texts[0] = @browser.span id: 'txt_val_1'
-  texts[1] = @browser.span id: 'txt_val_2'
-  texts[2] = @browser.span id: 'txt_val_4'
-  texts[3] = @browser.span id: 'txt_val_5'
-  texts[4] = @browser.span id: 'txt_val_6'
+  # texts = []
+  # texts[0] = @browser.span id: 'txt_val_1'
+  # texts[1] = @browser.span id: 'txt_val_2'
+  # texts[2] = @browser.span id: 'txt_val_4'
+  # texts[3] = @browser.span id: 'txt_val_5'
+  # texts[4] = @browser.span id: 'txt_val_6'
 
   values = []
-  values[0] = texts[0].text.to_s.tr('$,', '').to_f
-  values[1] = texts[1].text.to_s.tr('$,', '').to_f
-  values[2] = texts[2].text.to_s.tr('$,', '').to_f
-  values[3] = texts[3].text.to_s.tr('$,', '').to_f
-  values[4] = texts[4].text.to_s.tr('$,', '').to_f
+  # values[0] = texts[0].text.to_s.tr('$,', '').to_f
+  # values[1] = texts[1].text.to_s.tr('$,', '').to_f
+  # values[2] = texts[2].text.to_s.tr('$,', '').to_f
+  # values[3] = texts[3].text.to_s.tr('$,', '').to_f
+  # values[4] = texts[4].text.to_s.tr('$,', '').to_f
+  values[0] = @site.value_1.to_s.tr('$,', '').to_f
+  values[1] = @site.value_2.to_s.tr('$,', '').to_f
+  values[2] = @site.value_3.to_s.tr('$,', '').to_f
+  values[3] = @site.value_4.to_s.tr('$,', '').to_f
+  values[4] = @site.value_5.to_s.tr('$,', '').to_f
   @sum = values.inject(0){|sum,value| sum + value }
 
-  total_text = @browser.span id: 'txt_ttl_val'
-  total = total_text.text.to_s.tr('$,', '').to_f
+  # total_text = @browser.span id: 'txt_ttl_val'
+  # total = total_text.text.to_s.tr('$,', '').to_f
+  total = @site.total_balance.to_s.tr('$,', '').to_f
 
   if @sum == total
     @total_answer = true
