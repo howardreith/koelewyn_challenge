@@ -4,8 +4,8 @@ require 'page-object'
 class Site
   include PageObject
 
-  # page_url("https://www.exercise1.com/values")
-  page_url("http://localhost:7165/")
+  page_url("https://www.exercise1.com/values")
+  # page_url("http://localhost:7165/")
 
   span(:value_1, id: "txt_val_1")
   span(:value_2, id: "txt_val_2")
