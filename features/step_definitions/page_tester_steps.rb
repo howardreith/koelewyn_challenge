@@ -1,17 +1,23 @@
 Given(/^I am on the web page$/) do
-  @browser.goto('http://localhost:7165/')
+  visit_page Site
+  # @browser.goto('http://localhost:7165/')
 end
 
 When(/^all 5 spans exist$/) do
   @count = 0
   texts = []
-  texts[0] = @browser.span id: 'txt_val_1'
-  texts[1] = @browser.span id: 'txt_val_2'
-  texts[2] = @browser.span id: 'txt_val_4'
-  texts[3] = @browser.span id: 'txt_val_5'
-  texts[4] = @browser.span id: 'txt_val_6'
+  # texts[0] = @site.span id: 'txt_val_1'
+  # texts[1] = @site.span id: 'txt_val_2'
+  # texts[2] = @site.span id: 'txt_val_4'
+  # texts[3] = @site.span id: 'txt_val_5'
+  # texts[4] = @site.span id: 'txt_val_6'
+  texts[0] = @site.value_1
+  texts[1] = @site.value_2
+  texts[2] = @site.value_3
+  texts[3] = @site.value_4
+  texts[4] = @site.value_5
   texts.each do |text|
-    if text.exists?
+    if text
       @count = @count + 1
     end
   end
@@ -22,7 +28,8 @@ Then(/^I should find true$/) do
 end
 
 Given(/^I have navigated to the web page$/) do
-  @browser.goto('http://localhost:7165/')
+  visit_page Site
+  # @browser.goto('http://localhost:7165/')
 end
 
 When(/^the span's value is greater than 0$/) do
@@ -55,7 +62,8 @@ Then(/^I should get true$/) do
 end
 
 Given(/^The user has navigated to the web page$/) do
-  @browser.goto('http://localhost:7165/')
+  visit_page Site
+  # @browser.goto('http://localhost:7165/')
 end
 
 When(/^The total value is equal to the sum of the span values$/) do
@@ -89,7 +97,8 @@ Then(/^I should see a return of true$/) do
 end
 
 Given(/^The user is viewing the web page$/) do
-  @browser.goto('http://localhost:7165/')
+  visit_page Site
+  # @browser.goto('http://localhost:7165/')
 end
 
 When(/^the span's value is formatted as currency$/) do
