@@ -2,7 +2,7 @@ Given(/^the user opens the web page$/) do
   visit_page Site
 end
 
-When(/^all 5 spans exist$/) do
+When(/^we count the spans$/) do
   @count = 0
   texts = []
   texts[0] = @site.value_1
@@ -19,7 +19,11 @@ When(/^all 5 spans exist$/) do
   end
 end
 
-And(/^all of the spans' values are greater than 0$/) do
+Then(/^we should find 5 spans$/) do
+  expect(@count).to eq(5)
+end
+
+When(/^we look at the values of the spans$/) do
 
   values = []
   values[0] = @site.value_1.to_s.tr('$,', '').to_f
@@ -38,7 +42,11 @@ And(/^all of the spans' values are greater than 0$/) do
   end
 end
 
-And(/^all of the spans are formatted as currency$/) do
+Then(/^the values should all be greater than 0$/) do
+  expect(@value_answer).to eq(true)
+end
+
+When(/^we check the formatting of the spans$/) do
   texts = []
   texts[0] = @site.value_1
   texts[1] = @site.value_2
@@ -60,7 +68,11 @@ And(/^all of the spans are formatted as currency$/) do
   end
 end
 
-And(/^the total value is equal to the sum of the span values$/) do
+Then(/^they should all be formatted as currency$/) do
+  expect(@currency_answer).to eq(true)
+end
+
+When(/^we check the total value displayed$/) do
 
   values = []
   values[0] = @site.value_1.to_s.tr('$,', '').to_f
@@ -79,9 +91,6 @@ And(/^the total value is equal to the sum of the span values$/) do
   end
 end
 
-Then(/^it's all good$/) do
-  expect(@count).to eq(5)
-  expect(@value_answer).to eq(true)
-  expect(@currency_answer).to eq(true)
+Then(/^it should be equal to the sum of the spans$/) do
   expect(@total_answer).to eq(true)
 end
