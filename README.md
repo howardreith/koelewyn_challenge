@@ -126,16 +126,27 @@ Feature: Count Tester
   displayed on screen is the sum of the displayed values.
 
   Scenario: The user has navigated to the site and is observing the values. # features/page_tester.feature:6
+    
     Given the user opens the web page 
+    
     When we count the spans
+    
     Then we should find 5 spans
+    
     When we look at the values of the spans
+    
     Then the values should all be greater than 0
+    
     When we check the formatting of the spans
+   
     Then they should all be formatted as currency
+   
     When we check the total value displayed
+   
     Then it should be equal to the sum of the spans
 
 1 scenario (1 passed)
+
 9 steps (9 passed)
+
 0m1.930s
