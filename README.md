@@ -39,3 +39,103 @@ To use this material, perform the following:
 8. Run tests
 
 If you have any questions please feel free to contact me at howard.reith@gmail.com. Thank you.
+
+## Update 10/18/2018
+
+I have implemented some changes into the design of the test. Following are the details of these changes.
+
+### Page Object Model Improvement
+
+In hopes of making the page object model more robust should the page change in the future, I sought to add
+as many values to characterize the spans as possible. According to this site:
+https://github.com/cheezy/page-object/wiki/Elements
+the options are class, id, index, name, text, and xpath. Since the only information I have access to via this
+challenge involves the id and text, I included those, but could not include anything further without making
+things up. I have thus left it as those two values but acknowledge on a real site more values would likely
+be available for use.
+
+### Reducing the number of steps
+
+I have consolidated my four feature files into a single feature so as to reuse the initial "Given" rather than
+using several with slightly altered wording.
+
+In my initial refactoring effort, I also sought to consolidate all of the "Then"s into a single "Then." 
+My .feature file thus looked like:
+Given the user is on the site
+When the count of spans is 5
+And the values are greater than 0
+And the spans are formatted as currency
+And the total displayed equals the sum of the spans
+Then it's all good
+
+While this significantly reduced the number of steps, I disliked this solution as it failed to isolate the cause of
+a failure in the event a failure occurs. The only failing line would be "Then it's all good," which is ambiguous
+and nearly defeats the purpose of automated testing altogether.
+
+I thus concluded that having a "then" following each "when" provided for a more useful and robust test, and though
+it meant more steps, those steps appear to be necessary.
+
+### Improving test names
+
+In the previous version the "when" test names included the condition we were trying to meet. For example,
+"When the values are greater than 0," and then the "then" statement would simply say "then it's good," or
+something along those lines.
+
+I found these names to be misleading as they do not accurately reflect the point of failure in the testing process.
+"When the values are greater than 0" would appear to pass even though the values were not greater than 0 simply
+because the test successfully analyzed the values (which was the true condition for success in that step).
+
+I have thus rearranged the tests as follows:
+
+  Given the user opens the web page
+  When we count the spans
+  Then we should find 5 spans
+  When we look at the values of the spans
+  Then the values should all be greater than 0
+  When we check the formatting of the spans
+  Then they should all be formatted as currency
+  When we check the total value displayed
+  Then it should be equal to the sum of the spans
+
+When a test fails at the "then" stage it is thus obvious that it failed, for example, because there were not 5 spans,
+not simply because it was "not good."
+
+### On analyzing values and counting spans
+
+It occurred to me that, so long as we are able to successfully determine if a span's value is greater than 0,
+this implicitly determines whether the span existed, thus potentially rendering the first test counting the spans
+obsolete, or at least, one which can be easily implemented in the second step.
+
+I decided to keep them separate for two reasons.
+
+First, the challenge specifically requests them as separate elements, and I did not see them as obviously redundant
+as was the case with the "total" test.
+
+Second, by keeping them separate tests it helps elucidate the problem. If the "value" test fails, was it because
+the span didn't exist or because the values were not greater than 0? Keeping them as separate steps solves this
+ambiguity.
+
+## Success Mockup
+
+A successful run of tests should appear as follows:
+
+$ cucumber
+Feature: Count Tester
+  I want to know if the right number of spans appear, that they have values
+  greater than 0, that they're formatted as currency, and that the total
+  displayed on screen is the sum of the displayed values.
+
+  Scenario: The user has navigated to the site and is observing the values. # features/page_tester.feature:6
+    Given the user opens the web page 
+    When we count the spans
+    Then we should find 5 spans
+    When we look at the values of the spans
+    Then the values should all be greater than 0
+    When we check the formatting of the spans
+    Then they should all be formatted as currency
+    When we check the total value displayed
+    Then it should be equal to the sum of the spans
+
+1 scenario (1 passed)
+9 steps (9 passed)
+0m1.930s
