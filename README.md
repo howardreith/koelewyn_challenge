@@ -67,7 +67,39 @@ the defined number of steps and de-cluttering my code compared to my original ve
 
 I will note that this new design requires the test procedures to open the browser four separate times, which seems
 somewhat less than ideal, but perhaps this is how it should remain for the sake of completely testing each
-individual problem.
+individual problem. For reference, the scenarios in the feature file now appear as follows:
+
+  Scenario: Verify there is the proper number of spans.
+
+  Given the user opens the web page
+  
+  When we count the spans
+  
+  Then we should find 5 spans
+
+  Scenario: Verify the values of the spans are all greater than 0
+
+  Given the user opens the web page
+  
+  When we look at the values of the spans
+  
+  Then the values should all be greater than 0
+
+  Scenario: Verify that the spans are formatted as currency.
+
+  Given the user opens the web page
+  
+  When we check the formatting of the spans
+  
+  Then they should all be formatted as currency
+
+  Scenario: Verify the displayed total equals the sum of the displayed values.
+
+  Given the user opens the web page
+  
+  When we check the total value displayed
+  
+  Then it should be equal to the sum of the spans
 
 ### Accomodating additional values being added to the page and removing hard-coded span identification
 
