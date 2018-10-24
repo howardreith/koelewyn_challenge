@@ -5,11 +5,12 @@ end
 When(/^we count the spans$/) do
   @count = 0
   texts = []
-  texts[0] = @site.value_1
-  texts[1] = @site.value_2
-  texts[2] = @site.value_3
-  texts[3] = @site.value_4
-  texts[4] = @site.value_5
+  tracker = 0
+  @site.spans.each do |span|
+    if span.id[0] === 't' && span.id[4] === 'v'
+      texts.push(span.text)
+    end
+  end
   texts.each do |text|
     if text
       @count = @count + 1
