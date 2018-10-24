@@ -40,6 +40,57 @@ To use this material, perform the following:
 
 If you have any questions please feel free to contact me at howard.reith@gmail.com. Thank you.
 
+## Update 10/24/2018
+
+Since my previous update on 10/18, I have incorporated the following changes:
+
+### Page Object Model Improvement
+
+In my previous version I increased specificity for my page object model by including both IDs and "text" in
+my identification. I have decided to remove "text" as having fewer, but more robust, identifiers will serve
+to make my tests adequately accurate but also flexible in case the values of the spans change. In other words,
+relying only on ID is sufficient for now, and this change will make my tests less likely to break with page
+updates.
+
+### Segregating the scenarios
+
+In my previous version, I had an erroneous understanding of what constituted a "test." I thought each "step"
+was a "test," and sought to reduce the total number of "tests" by consolidating them all into a single
+feature and scenario. I have since learned that each scenario constitutes a "test" and I should not sacrifice
+specificity of scenario for the sake of reducing the number of "tests."
+
+I've thus continued to keep all of my scenarios in a single feature, but I have split my steps into four
+scenarios to cover the four issues we're hoping to address in the challenge. The resulting specificity of
+each test is a definite improvement. Unlike the original version, when possible, I have made repeated
+use of similar steps, such as using the same "Given" to open the browser in all four scenarios, thus reducing
+the defined number of steps and de-cluttering my code compared to my original version.
+
+I will note that this new design requires the test procedures to open the browser four separate times, which seems
+somewhat less than ideal, but perhaps this is how it should remain for the sake of completely testing each
+individual problem.
+
+### Accomodating additional values being added to the page and removing hard-coded span identification
+
+The most significant change to my response involves altering the procedure for the test to count the number
+of value spans on the page. In the previous version, the test referenced the Page Object Model to check if
+each of the five known span IDs were present. If the span was there, it added +1 to a counter, and the test
+passed if the counter totaled 5, i.e., it found all five expected spans.
+
+While this solution technically met the criteria, it had some weaknesses, not least being that if there were
+more spans than just those expected by the test (for example, a span labeled txt_val_9), it would fail to
+identify that span.
+
+The test has thus been changed to find all spans on the page. Since this results in finding the label spans and
+the total span as well as the value spans, a conditional has been added to reference the page object model and
+add to an array only those spans which have ids that match the criteria we're looking for. In this version,
+that meant a "t" in the first character and a "v" in the 5th character, as this is sufficient to rule out all
+other spans currently present. These restrictions can be made more robust if necessary. Those spans which fit
+the requirement are added to an array, and the previous solution of increasing a counter for each item
+in the array was repeated. If the array contains the expected 5 values, the test passes.
+
+This change will minimize the necessary adjustments to the test should additional spans be added to future versions
+of the page.
+
 ## Update 10/18/2018
 
 I have implemented some changes into the design of the test. Following are the details of these changes.
